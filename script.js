@@ -12,7 +12,7 @@ class Weather {
         this.lat = responseDataCoord[0].lat;
         this.lon = responseDataCoord[0].lon;
 
-        console.log(responseData)
+        //console.log(responseData)
         console.log(this.lon, this.lat);
 
         
@@ -80,7 +80,7 @@ function getWeather() {
 
     if (city !== null && state !== null) {
         weather = new Weather(city, state);
-        console.log('weather');
+        //console.log('weather');
     } 
 
 
@@ -96,7 +96,7 @@ function getWeather() {
 
 const saveChanges = document.getElementById('w-change-button');
 saveChanges.addEventListener('click', (e) => {
-    console.log('Hello');
+    //console.log('Hello');
     const newCity = document.getElementById('city');
     const newState = document.getElementById('state');
     console.log(newCity.value, newState.value);
