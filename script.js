@@ -27,6 +27,10 @@ class Weather {
     changeLocation(city, state) {
         this.city = city;
         this.state = state;
+
+        localStorage.setItem('selectedCity', JSON.stringify(city));
+        localStorage.setItem('selectedState', JSON.stringify(state));
+        console.log('hello');
     }
 
 
@@ -60,13 +64,26 @@ class UI {
 }
 
 //Init object
-const weather = new Weather('San Jose', 'California');
+let weather = new Weather('San Jose', 'California');
 
 //get weather on DOM load
 document.addEventListener('DOMContentLoaded', getWeather());
 //getWeather2();
 //weather.changeLocation('Miami', 'Florida');
 function getWeather() {
+    //get city and state from local storage otherwise use san jose
+
+    const city = JSON.parse(localStorage.getItem('selectedCity'));
+    const state = JSON.parse(localStorage.getItem('selectedState'));
+
+    
+
+    if (city !== null && state !== null) {
+        weather = new Weather(city, state);
+        //console.log('weather');
+    } 
+
+
     weather.getWeather()
     .then(results => {
         console.log(results)
@@ -79,7 +96,7 @@ function getWeather() {
 
 const saveChanges = document.getElementById('w-change-button');
 saveChanges.addEventListener('click', (e) => {
-    console.log('Hello');
+    //console.log('Hello');
     const newCity = document.getElementById('city');
     const newState = document.getElementById('state');
     console.log(newCity.value, newState.value);
